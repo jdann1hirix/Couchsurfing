@@ -15,6 +15,7 @@ Here some notes about my approach:
     * Use connexion lib to simplify swagger implementation
     * Use seed data static
     * Implemented endpoints following REST principles (except for the relationship one that does not represent a resource)
+    * Used short and as atomic as possible commits
     * Considered the list to be a simple hierarchy (not a graph)
     * Use lower ammount possible of external libs and a light web framework
 
