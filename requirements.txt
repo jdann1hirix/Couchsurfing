@@ -1,0 +1,4 @@
+Flask==2.2.2
+gunicorn
+Werkzeug==2.2.2
+connexion[swagger-ui]==2.14.1

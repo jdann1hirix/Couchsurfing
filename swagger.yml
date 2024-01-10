@@ -1,0 +1,19 @@
+openapi: 3.0.0
+info:
+  title: "Couchsurfing - Flask REST API"
+  description: "An API about user and relationships"
+  version: "1.0.0"
+
+servers:
+  - url: "/api"
+
+paths:
+  /user:
+    get:
+      operationId: "user.read_all"
+      tags:
+        - "User"
+      summary: "Read the list of users"
+      responses:
+        "200":
+          description: "Successfully read user list"
