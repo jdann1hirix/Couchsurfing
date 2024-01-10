@@ -16,7 +16,7 @@ Uma breve descrição sobre o que esse projeto faz e para quem ele é
 Create a basic REST API that runs as a docker container and does the following:
 
     * Has a resource that is a user
-    * User should have an attribute that describes its relationship to other uses (think friends)
+    * User should have an attribute that describes its relationship to other user (think friends)
     * Seeds user data (static list or DB whichever is preferred)
     * Serves CRUD endpoints for the user resource
     * Has an additional endpoint that finds the relationship distance from one user to another user (this user is a 2nd, 3rd, distance relationship)
