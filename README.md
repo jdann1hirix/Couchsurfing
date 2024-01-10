@@ -6,6 +6,7 @@
 To run the application you need to have Python (> 3.7) on your machine. Follow steps above:
     * pip install -r requirements.txt
     * connexion run swagger.yml
+Test application and check behavior at http://127.0.0.1:5000/api/ui/
 
 ## General Approach
 
