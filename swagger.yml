@@ -7,6 +7,36 @@ info:
 servers:
   - url: "/api"
 
+components:
+  schemas:
+    User:
+      type: "object"
+      required:
+        - login
+      properties:
+        uuid:
+          type: "string"
+          format: "uuid"
+        login:
+          type: "string"
+        created_at:
+          type: "string"
+          format: "date-time"
+        modified_at:
+          type: "string"
+          format: "date-time"
+        user_relationship_id:
+          type: "string"
+          format: "uuid"
+  parameters:
+    login:
+      name: "login"
+      description: "Login of the user to get"
+      in: path
+      required: True
+      schema:
+        type: "string"
+
 paths:
   /user:
     get:
@@ -17,3 +47,19 @@ paths:
       responses:
         "200":
           description: "Successfully read user list"
+    post:
+      operationId: "user.create"
+      tags:
+        - User
+      summary: "Create a user"
+      requestBody:
+          description: "User to create"
+          required: True
+          content:
+            application/json:
+              schema:
+                x-body-name: "user"
+                $ref: "#/components/schemas/User"
+      responses:
+        "201":
+          description: "Successfully created user"
