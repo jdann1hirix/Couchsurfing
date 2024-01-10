@@ -71,6 +71,11 @@ def create(user):
     uuidnumber = str(uuid.uuid4())
     login = user.get("login")
     user_relationship_id = user.get("user_relationship_id", "")
+    if (user_relationship_id not in USER):
+        abort(
+            404,
+            f"User relationship id {user_relationship_id} not found"
+        )
 
     USER[uuidnumber] = {
             "uuid": uuidnumber,

@@ -29,6 +29,7 @@ Here some notes about my approach:
     * Use connexion lib to simplify swagger implementation
     * Use seed data static
     * Implemented endpoints following REST principles (except for the relationship one that does not represent a resource)
+    * Considered the list to be a simple hierarchy (not a graph)
 
 ## Possible Future improvements
 
