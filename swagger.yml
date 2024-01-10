@@ -38,6 +38,13 @@ components:
       required: True
       schema:
         type: "string"
+    uuid_to_search:
+      name: "uuid_to_search"
+      description: "uuid to search relationship"
+      in: path
+      required: True
+      schema:
+        type: "string"
 
 paths:
   /user:
@@ -102,3 +109,15 @@ paths:
       responses:
         "204":
           description: "Successfully deleted user"
+  /user/{uuid}/relationship_level/{uuid_to_search}:
+    get:
+      operationId: "user.relationship_level"
+      tags:
+        - User
+      summary: "Discover and show which relationship level exists between 2 users"
+      parameters:
+        - $ref: "#/components/parameters/uuid"
+        - $ref: "#/components/parameters/uuid_to_search"
+      responses:
+        "200":
+          description: "Successfully find user relationship"
