@@ -66,6 +66,16 @@ paths:
         "201":
           description: "Successfully created user"
   /user/{uuid}:
+    get:
+      operationId: "user.read_one"
+      tags:
+        - User
+      summary: "Read one user"
+      parameters:
+        - $ref: "#/components/parameters/uuid"
+      responses:
+        "200":
+          description: "Successfully read user"
     put:
       tags:
         - User

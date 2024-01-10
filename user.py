@@ -36,6 +36,14 @@ USER = {
 def read_all():
     return list(USER.values())
 
+def read_one(uuid):
+    if uuid in USER:
+        return USER[uuid]
+    else:
+        abort(
+            404, f"Person with id {uuid} not found"
+        )
+
 def create(user):
     uuidnumber = str(uuid.uuid4())
     login = user.get("login")
