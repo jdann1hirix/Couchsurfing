@@ -1,4 +1,5 @@
 from datetime import datetime
+from flask import abort
 import uuid
 
 def get_created_at_timestamp():
@@ -8,7 +9,7 @@ def get_timestamp():
     return datetime.now().strftime(("%Y-%m-%dT%H:%M:%S"))
 
 USER = {
-    "Fairy": {
+    "e340d0fa-3f91-4ca8-913d-e47c5d7d35c6": {
         "uuid": "e340d0fa-3f91-4ca8-913d-e47c5d7d35c6",
         "login": "Fairy",
         "created_at": get_created_at_timestamp(),
@@ -16,14 +17,14 @@ USER = {
         "user_relationship_id": "3d402b31-e1f6-4b89-979e-4de0537f31c6",
 
     },
-    "Ruprecht": {
+    "3d402b31-e1f6-4b89-979e-4de0537f31c6": {
         "uuid": "3d402b31-e1f6-4b89-979e-4de0537f31c6",
         "login": "Ruprecht",
         "created_at": get_created_at_timestamp(),
         "modified_at": get_created_at_timestamp(),
         "user_relationship_id": "2bd31a35-c282-4c33-859e-cb89cb567498",
     },
-    "Bunny": {
+    "2bd31a35-c282-4c33-859e-cb89cb567498": {
         "uuid": "2bd31a35-c282-4c33-859e-cb89cb567498",
         "login": "Bunny",
         "created_at": get_created_at_timestamp(),
@@ -49,3 +50,15 @@ def create(user):
     }
 
     return USER[uuidnumber], 201
+
+def update(uuid, user):
+    if uuid in USER:
+        USER[uuid]["login"] = user.get("login")
+        USER[uuid]["user_relationship_id"] = user.get("user_relationship_id")
+        USER[uuid]["modified_at"] = get_timestamp()
+        return USER[uuid]
+    else:
+        abort(
+            404,
+            f"Person with id {uuid} not found"
+        )

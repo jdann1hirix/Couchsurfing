@@ -9,29 +9,31 @@ servers:
 
 components:
   schemas:
-    User:
+    UserToCreate:
       type: "object"
       required:
         - login
       properties:
-        uuid:
-          type: "string"
-          format: "uuid"
         login:
           type: "string"
-        created_at:
+        user_relationship_id:
           type: "string"
-          format: "date-time"
-        modified_at:
+          format: "uuid"
+    UserToPut:
+      type: "object"
+      required:
+        - login
+        - user_relationship_id
+      properties:
+        login:
           type: "string"
-          format: "date-time"
         user_relationship_id:
           type: "string"
           format: "uuid"
   parameters:
-    login:
-      name: "login"
-      description: "Login of the user to get"
+    uuid:
+      name: "uuid"
+      description: "UUId of the user to get"
       in: path
       required: True
       schema:
@@ -59,7 +61,24 @@ paths:
             application/json:
               schema:
                 x-body-name: "user"
-                $ref: "#/components/schemas/User"
+                $ref: "#/components/schemas/UserToCreate"
       responses:
         "201":
           description: "Successfully created user"
+  /user/{uuid}:
+    put:
+      tags:
+        - User
+      operationId: "user.update"
+      summary: "Update a user object completely"
+      parameters:
+        - $ref: "#/components/parameters/uuid"
+      responses:
+        "200":
+          description: "Successfully updated user"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              x-body-name: "user"
+              $ref: "#/components/schemas/UserToPut"
