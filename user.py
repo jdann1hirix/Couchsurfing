@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import abort
+from flask import abort, make_response
 import uuid
 
 def get_created_at_timestamp():
@@ -65,6 +65,18 @@ def update(uuid, user):
         USER[uuid]["user_relationship_id"] = user.get("user_relationship_id")
         USER[uuid]["modified_at"] = get_timestamp()
         return USER[uuid]
+    else:
+        abort(
+            404,
+            f"Person with id {uuid} not found"
+        )
+
+def delete(uuid):
+    if uuid in USER:
+        del USER[uuid]
+        return make_response(
+            f"{uuid} successfully deleted", 200
+        )
     else:
         abort(
             404,

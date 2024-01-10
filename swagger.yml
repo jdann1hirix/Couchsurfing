@@ -92,3 +92,13 @@ paths:
             schema:
               x-body-name: "user"
               $ref: "#/components/schemas/UserToPut"
+    delete:
+      tags:
+        - User
+      operationId: "user.delete"
+      summary: "Delete a user"
+      parameters:
+        - $ref: "#/components/parameters/uuid"
+      responses:
+        "204":
+          description: "Successfully deleted user"
